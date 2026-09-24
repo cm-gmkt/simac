@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMAC · Discovery 60 min</title>
+<style>
+:root{
+  --bg:#f4f6f8; --card:#fff; --ink:#17222b; --muted:#6d7882; --line:#dfe5e8;
+  --nav:#112f3b; --gold:#d3a14a; --blue:#2c6077; --soft:#edf3f5;
+  --must:#a74646; --nice:#ad7421; --audit:#376b58; --shadow:0 10px 28px rgba(22,40,50,.07);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.app{display:grid;grid-template-columns:260px minmax(0,1fr);min-height:100vh}
+aside{position:sticky;top:0;height:100vh;overflow:auto;background:var(--nav);color:#fff;padding:22px 16px}
+.brand{padding:0 8px 16px;border-bottom:1px solid rgba(255,255,255,.12)}
+.brand small{display:block;color:#c7d4da;text-transform:uppercase;letter-spacing:.12em;font-size:10px}
+.brand h1{font-size:20px;line-height:1.1;margin:7px 0 4px}
+.brand p{font-size:12px;color:#b7c8cf;margin:0}
+.progressBox{margin:16px 8px}
+.progressLine{display:flex;justify-content:space-between;font-size:11px;color:#d5e0e4;margin-bottom:6px}
+.progress{height:8px;background:rgba(255,255,255,.13);border-radius:99px;overflow:hidden}
+.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),#f1cf8d)}
+.nav{margin-top:12px}
+.nav button{width:100%;border:0;background:transparent;color:#dce7eb;text-align:left;padding:9px 10px;border-radius:9px;margin:2px 0}
+.nav button.active,.nav button:hover{background:rgba(255,255,255,.10);color:#fff}
+.nav .group{margin:14px 10px 5px;color:#91aab4;text-transform:uppercase;font-size:9px;letter-spacing:.12em}
+.tools{border-top:1px solid rgba(255,255,255,.12);margin-top:16px;padding-top:12px}
+.tools button{width:100%;margin:4px 0;padding:8px 10px;border-radius:9px;border:1px solid rgba(255,255,255,.16);background:transparent;color:#fff;text-align:left}
+main{min-width:0}
+.topbar{position:sticky;top:0;z-index:5;background:rgba(244,246,248,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:11px 24px;display:flex;justify-content:space-between;gap:14px;align-items:center}
+.topbar strong{font-size:14px}
+.chips{display:flex;gap:7px;flex-wrap:wrap}
+.chip{background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 9px;font-size:11px;color:var(--muted)}
+.content{max-width:1080px;margin:0 auto;padding:28px 26px 80px}
+.hero{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:28px;margin-bottom:18px}
+.hero small{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);font-weight:800}
+.hero h2{font-size:31px;line-height:1.08;margin:8px 0 8px}
+.hero p{color:var(--muted);max-width:800px}
+.rule{margin-top:16px;background:#faf6eb;border-left:4px solid var(--gold);padding:13px 15px;border-radius:10px;font-weight:650}
+.section{display:none}.section.active{display:block}
+.head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin:22px 0 14px}
+.head h2{margin:0;font-size:24px}
+.head p{margin:5px 0 0;color:var(--muted);max-width:760px}
+.time{white-space:nowrap;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:11px;color:var(--muted)}
+.levelIntro{display:grid;grid-template-columns:1fr auto;gap:15px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:15px;padding:17px 19px;margin-bottom:15px}
+.levelIntro strong{display:block;font-size:17px}
+.levelIntro p{margin:4px 0 0;color:var(--muted)}
+.badge{display:inline-flex;border-radius:999px;padding:5px 9px;font-size:10px;font-weight:800;letter-spacing:.07em;text-transform:uppercase}
+.must{background:#fae8e8;color:#913d3d}.nice{background:#fff1dd;color:#93621f}.audit{background:#e8f2ed;color:#376b58}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+.s12{grid-column:span 12}.s8{grid-column:span 8}.s7{grid-column:span 7}.s6{grid-column:span 6}.s5{grid-column:span 5}.s4{grid-column:span 4}
+.card{background:#fff;border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow);padding:18px}
+.card h3{font-size:15px;margin:0 0 4px}
+.card p.help{font-size:12px;color:var(--muted);margin:0 0 10px}
+.qtop{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+label{font-size:12px;font-weight:700;display:block;margin:10px 0 5px}
+input[type=text],input[type=date],textarea,select{
+ width:100%;border:1px solid #cfd8dc;border-radius:10px;padding:10px 11px;background:#fff;color:var(--ink);outline:none
+}
+textarea{min-height:90px;resize:vertical}
+input:focus,textarea:focus,select:focus{border-color:#78a0b2;box-shadow:0 0 0 3px rgba(44,96,119,.08)}
+.options{display:grid;gap:7px;margin-top:8px}
+.options.cols{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.opt{display:flex;gap:7px;align-items:flex-start;border:1px solid var(--line);border-radius:9px;padding:8px 9px;background:#fff}
+.opt input{margin-top:3px}
+.follow{margin-top:10px;padding:9px 11px;border-radius:8px;background:#eef5f7;border-left:3px solid var(--blue);font-size:12px}
+.follow b{display:block;color:#27596f;margin-bottom:2px}
+.private{margin-top:10px;padding-top:10px;border-top:1px dashed #d3d9dd}
+.private label{color:#7b611e}
+.private textarea{background:#fffdf6;border-color:#eadbac;min-height:65px}
+.summaryStrip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.summaryMini{padding:13px;border:1px solid var(--line);border-radius:11px;background:#fff}
+.summaryMini b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:5px}
+.checklist{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px}
+.check{display:flex;gap:8px;padding:9px 0;border-bottom:1px solid #edf0f2}
+.check input{margin-top:3px}
+.check span{font-size:13px}
+.auditGroup{margin-bottom:14px}
+.auditGroup h4{margin:0 0 6px;font-size:13px;color:var(--blue)}
+.auditGroup p{margin:0;color:var(--muted);font-size:12px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.btn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 10px}
+.btn.primary{background:var(--nav);color:#fff;border-color:var(--nav)}
+.outcome{background:#f7fafb;border:1px solid var(--line);border-radius:12px;padding:14px}
+.outcome h4{margin:0 0 8px;font-size:13px}
+.outcome ul{margin:0;padding-left:18px}
+.outcome li{margin:5px 0}
+pre{white-space:pre-wrap;background:#f7f9fa;border:1px solid var(--line);border-radius:12px;padding:15px;font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;max-height:520px;overflow:auto}
+.clientMode .private,.clientMode .privateOnly{display:none!important}
+.clientMode aside{background:#173b49}
+.note{font-size:11px;color:var(--muted)}
+@media(max-width:900px){
+ .app{grid-template-columns:1fr}aside{position:relative;height:auto}.nav{display:grid;grid-template-columns:repeat(2,1fr)}.nav .group{grid-column:1/-1}
+ .s8,.s7,.s6,.s5,.s4{grid-column:span 12}.summaryStrip{grid-template-columns:1fr 1fr}.checklist{grid-template-columns:1fr}
+}
+@media(max-width:600px){.content{padding:18px 12px 70px}.hero h2{font-size:25px}.summaryStrip{grid-template-columns:1fr}.nav{grid-template-columns:1fr}}
+@media print{aside,.topbar,.actions{display:none!important}.app{display:block}.section{display:block!important;page-break-before:always}.content{max-width:none;padding:0}.card,.hero{box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+<aside>
+  <div class="brand">
+    <small>Discovery Session</small>
+    <h1>SIMAC · 60 min</h1>
+    <p>Marketing + Revenue + Estructura</p>
+  </div>
+  <div class="progressBox">
+    <div class="progressLine"><span>Nivel 1 completado</span><strong id="pText">0%</strong></div>
+    <div class="progress"><span id="pBar"></span></div>
+  </div>
+  <div class="nav" id="nav"></div>
+  <div class="tools">
+    <button onclick="toggleClient()">◉ Modo cliente</button>
+    <button onclick="generateSummary();go('summary')">▤ Generar resumen</button>
+    <button onclick="downloadJSON()">⇩ Exportar respaldo</button>
+    <button onclick="window.print()">⎙ Imprimir / PDF</button>
+  </div>
+</aside>
+
+<main>
+  <div class="topbar">
+    <strong id="topTitle">Inicio</strong>
+    <div class="chips">
+      <span class="chip">Objetivo: 60 min</span>
+      <span class="chip">Guardado local automático</span>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="hero">
+      <small>SIMAC · Marketing & Revenue Discovery</small>
+      <h2>Salir con claridad, no con todas las respuestas.</h2>
+      <p>Este workbook está diseñado para una reunión de una hora. No necesitas terminarlo completo. El objetivo es salir con suficiente claridad para saber qué auditar después y qué información pedir.</p>
+      <div class="rule">Regla de la sesión: si una respuesta ya permite decidir qué auditar, no sigas preguntando sólo por completar campos.</div>
+    </div>
+
+    <section class="section active" data-id="start" data-title="00 · Inicio">
+      <div class="head"><div><h2>00 · Inicio</h2><p>Contexto de la sesión y roles.</p></div><span class="time">2–3 min</span></div>
+      <div class="grid">
+        <div class="card s7">
+          <div class="qtop"><div><h3>Objetivo de hoy</h3><p class="help">Alinear expectativas desde el principio.</p></div><span class="badge must">Sí o sí</span></div>
+          <textarea data-save id="start_goal">Entender qué necesita lograr marketing, cómo funciona hoy el sistema, dónde perciben problemas, qué podemos comprobar con datos y qué debemos auditar antes de diseñar la estructura futura del departamento.</textarea>
+        </div>
+        <div class="card s5">
+          <label>Participantes SIMAC</label><input data-save id="participants" type="text" placeholder="Nombre / rol">
+          <label>Facilitadores</label><input data-save id="facilitators" type="text" value="Carel · Marketing & Revenue | Yuri · Estructura y operating model">
+        </div>
+      </div>
+
+      <div class="head"><div><h2>Los 3 niveles</h2></div></div>
+      <div class="grid">
+        <div class="card s4"><span class="badge must">Nivel 1</span><h3 style="margin-top:9px">Lo que debo saber hoy</h3><p class="help">Negocio, objetivo, proceso, problema percibido, datos disponibles, equipo y expectativa.</p></div>
+        <div class="card s4"><span class="badge nice">Nivel 2</span><h3 style="margin-top:9px">Sólo si hay tiempo</h3><p class="help">Detalle de canales, buyer, competencia, recurrencia profunda, inversión y métricas.</p></div>
+        <div class="card s4"><span class="badge audit">Nivel 3</span><h3 style="margin-top:9px">Lo pido después</h3><p class="help">CRM, ventas, campañas, analytics, procesos, clientes y documentos necesarios para auditar.</p></div>
+      </div>
+    </section>
+
+    <section class="section" data-id="l1-business" data-title="01 · Nivel 1 · Negocio">
+      <div class="levelIntro"><div><strong>NIVEL 1 · Negocio y prioridad</strong><p>Sin esto no puedes interpretar nada de marketing.</p></div><span class="badge must">Sí o sí</span></div>
+      <div class="head"><div><h2>Negocio</h2><p>Prioriza entender qué mueve la empresa y qué quieren crecer.</p></div><span class="time">8–10 min</span></div>
+      <div class="grid">
+        <div class="card s7">
+          <div class="qtop"><div><h3>1. ¿Cómo gana dinero SIMAC hoy?</h3><p class="help">Que lo expliquen ellos, no desde el sitio web.</p></div><span class="badge must">Crítica</span></div>
+          <textarea data-save id="l1_business_model" placeholder="Principales líneas / servicios / cómo las agrupan internamente"></textarea>
+          <div class="follow"><b>Si hace falta</b>¿Cuál representa más negocio? ¿Cuál tiene mayor potencial? ¿Cuál es más estratégica?</div>
+        </div>
+        <div class="card s5">
+          <div class="qtop"><div><h3>2. ¿Qué quieren crecer?</h3></div><span class="badge must">Crítica</span></div>
+          <textarea data-save id="l1_growth_priorities" placeholder="Top 3 prioridades"></textarea>
+          <label>¿Qué NO debería priorizar marketing?</label>
+          <textarea data-save id="l1_deprioritize"></textarea>
+        </div>
+        <div class="card s12">
+          <div class="qtop"><div><h3>3. ¿Por qué están reforzando marketing justo ahora?</h3></div><span class="badge must">Crítica</span></div>
+          <textarea data-save id="l1_why_now"></textarea>
+          <div class="follow"><b>Escucha</b>¿Hay presión por crecimiento, falta de sistema, falta de demanda, seguimiento, recurrencia, expansión, medición o profesionalización?</div>
+          <div class="private"><label>Notas internas</label><textarea data-save id="l1_business_notes"></textarea></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-id="l1-objective" data-title="02 · Nivel 1 · Objetivo">
+      <div class="levelIntro"><div><strong>NIVEL 1 · Qué debe lograr marketing</strong><p>No permitir que “hacer más contenido” se convierta en el objetivo.</p></div><span class="badge must">Sí o sí</span></div>
+      <div class="head"><div><h2>Resultado esperado</h2></div><span class="time">7–8 min</span></div>
+      <div class="grid">
+        <div class="card s7">
+          <div class="qtop"><div><h3>4. ¿Qué esperan que marketing produzca realmente?</h3></div><span class="badge must">Crítica</span></div>
+          <textarea data-save id="l1_marketing_expectation" placeholder="Resultado de negocio esperado"></textarea>
+          <div class="follow"><b>Si hablan de actividad</b>“¿Y qué resultado de negocio debería mejorar como consecuencia?”</div>
+        </div>
+        <div class="card s5">
+          <div class="qtop"><div><h3>5. En 6 meses, ¿qué tendría que haber cambiado para decir “funcionó”?</h3></div><span class="badge must">Crítica</span></div>
+          <textarea data-save id="l1_success_6m"></textarea>
+        </div>
+        <div class="card s12">
+          <label>¿Existe alguna meta comercial concreta relacionada?</label>
+          <textarea data-save id="l1_business_goal" placeholder="Ventas, contratos, renta, pipeline, recurrencia, cobertura, etc."></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-id="l1-process" data-title="03 · Nivel 1 · Proceso">
+      <div class="levelIntro"><div><strong>NIVEL 1 · Marketing → Comercial</strong><p>Reconstruye el sistema real con un caso concreto.</p></div><span class="badge must">Sí o sí</span></div>
+      <div class="head"><div><h2>Proceso comercial real</h2></div><span class="time">12–14 min</span></div>
+      <div class="grid">
+        <div class="card s8">
+          <div class="qtop"><div><h3>6. Entra un prospecto hoy. ¿Qué pasa desde que llega hasta que compra o se pierde?</h3></div><span class="badge must">Crítica</span></div>
+          <textarea data-save id="l1_lead_process" placeholder="Entrada → asignación → contacto → calificación → cotización → seguimiento → cierre / pérdida"></textarea>
+          <div class="follow"><b>Mejor pregunta si se vuelve idealizado</b>“Pensemos en un prospecto real reciente. ¿Qué pasó exactamente?”</div>
+        </div>
+        <div class="card s4">
+          <div class="qtop"><div><h3>7. ¿Dónde creen que se pierden más oportunidades?</h3></div><span class="badge must">Crítica</span></div>
+          <textarea data-save id="l1_perceived_leak"></textarea>
+          <label>¿Dato o percepción?</label>
+          <select data-save id="l1_leak_evidence"><option value="">Seleccionar</option><option>Lo podemos ver en datos</option><option>Es principalmente percepción</option><option>Mixto</option><option>No sabemos</option></select>
+        </div>
+        <div class="card s6">
+          <div class="qtop"><div><h3>8. ¿Qué pueden medir hoy de ese proceso?</h3></div><span class="badge must">Crítica</span></div>
+          <textarea data-save id="l1_metrics_known" placeholder="Leads, cotizaciones, oportunidades, ventas, fuente, tiempos, pérdidas…"></textarea>
+        </div>
+        <div class="card s6">
+          <div class="qtop"><div><h3>9. ¿Podemos rastrear una venta hasta su origen?</h3></div><span class="badge must">Crítica</span></div>
+          <div class="options cols">
+            <label class="opt"><input data-save type="radio" name="trace" value="Sí">Sí</label>
+            <label class="opt"><input data-save type="radio" name="trace" value="Parcial">Parcialmente</label>
+            <label class="opt"><input data-save type="radio" name="trace" value="No">No</label>
+            <label class="opt"><input data-save type="radio" name="trace" value="No sabemos">No sabemos</label>
+          </div>
+          <div class="private"><label>Qué debemos comprobar después</label><textarea data-save id="l1_trace_notes"></textarea></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-id="l1-team" data-title="04 · Nivel 1 · Equipo">
+      <div class="levelIntro"><div><strong>NIVEL 1 · Equipo y estructura</strong><p>Bloque ideal para que Yuri lidere. Auditar funciones, no personas.</p></div><span class="badge must">Sí o sí</span></div>
+      <div class="head"><div><h2>Qué existe hoy y qué falta</h2></div><span class="time">10–12 min</span></div>
+      <div class="grid">
+        <div class="card s6">
+          <div class="qtop"><div><h3>10. ¿Qué hace hoy la persona interna de marketing?</h3><p class="help">Ya sabemos que el rol se parece más a Community Management; validar alcance real.</p></div><span class="badge must">Crítica</span></div>
+          <textarea data-save id="l1_current_role" placeholder="Responsabilidades reales, frecuencia, aprobaciones, carga"></textarea>
+        </div>
+        <div class="card s6">
+          <div class="qtop"><div><h3>11. ¿Qué necesita poder hacer el departamento que hoy no puede hacer de forma consistente?</h3></div><span class="badge must">Crítica</span></div>
+          <textarea data-save id="l1_missing_capabilities"></textarea>
+          <div class="follow"><b>Yuri</b>¿Falta tiempo, capacidad, experiencia, proceso, ownership, herramienta o autoridad?</div>
+        </div>
+        <div class="card s6">
+          <div class="qtop"><div><h3>12. ¿Qué falló con el apoyo externo anterior?</h3></div><span class="badge must">Crítica</span></div>
+          <textarea data-save id="l1_external_issues" placeholder="Tiempos, comunicación, estrategia, ejecución, seguimiento, reporting, ownership…"></textarea>
+        </div>
+        <div class="card s6">
+          <div class="qtop"><div><h3>13. Si esto funciona bien, ¿qué debería quedarse interno y qué debería resolver un partner?</h3></div><span class="badge must">Crítica</span></div>
+          <textarea data-save id="l1_internal_external"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-id="l1-close" data-title="05 · Nivel 1 · Cierre">
+      <div class="levelIntro"><div><strong>NIVEL 1 · Cierre</strong><p>Si llegaste aquí con claridad, la reunión cumplió su objetivo.</p></div><span class="badge must">Sí o sí</span></div>
+      <div class="head"><div><h2>Cerrar entendimiento</h2></div><span class="time">6–8 min</span></div>
+      <div class="grid">
+        <div class="card s6">
+          <div class="qtop"><div><h3>14. ¿Cuáles son las 3 prioridades que debemos investigar después?</h3></div><span class="badge must">Crítica</span></div>
+          <textarea data-save id="l1_top3" placeholder="1.&#10;2.&#10;3."></textarea>
+        </div>
+        <div class="card s6">
+          <div class="qtop"><div><h3>15. ¿Qué información sabemos que falta?</h3></div><span class="badge must">Crítica</span></div>
+          <textarea data-save id="l1_missing_info"></textarea>
+        </div>
+        <div class="card s6">
+          <label>¿Quién participa en la decisión de este proyecto?</label>
+          <textarea data-save id="l1_decision"></textarea>
+        </div>
+        <div class="card s6">
+          <label>¿Qué debería pasar después de esta reunión?</label>
+          <textarea data-save id="l1_next_step"></textarea>
+        </div>
+      </div>
+
+      <div class="head"><div><h2>Antes de cerrar, debes poder decir:</h2></div></div>
+      <div class="summaryStrip">
+        <div class="summaryMini"><b>NEGOCIO</b><span>Qué quieren crecer</span></div>
+        <div class="summaryMini"><b>MARKETING</b><span>Qué resultado esperan</span></div>
+        <div class="summaryMini"><b>SISTEMA</b><span>Dónde creen que falla</span></div>
+        <div class="summaryMini"><b>AUDITORÍA</b><span>Qué debemos comprobar</span></div>
+      </div>
+    </section>
+
+    <section class="section" data-id="l2" data-title="06 · Nivel 2 · Si hay tiempo">
+      <div class="levelIntro"><div><strong>NIVEL 2 · Sólo si hay tiempo</strong><p>No sacrifiques el cierre de Nivel 1 por completar estas preguntas.</p></div><span class="badge nice">Opcional</span></div>
+      <div class="head"><div><h2>Profundización</h2><p>Úsalas únicamente si una respuesta de Nivel 1 requiere más contexto o te sobra tiempo.</p></div><span class="time">0–10 min</span></div>
+      <div class="grid">
+        <div class="card s6"><h3>Cliente / decisor</h3><p class="help">¿Quiénes son sus mejores clientes? ¿Quién detecta necesidad, influye, decide y autoriza?</p><textarea data-save id="l2_customer"></textarea></div>
+        <div class="card s6"><h3>Canales actuales</h3><p class="help">Sólo para saber qué habrá que auditar después.</p>
+          <div class="options cols">
+            <label class="opt"><input data-save type="checkbox" name="channels" value="Google Ads">Google Ads</label>
+            <label class="opt"><input data-save type="checkbox" name="channels" value="Meta Ads">Meta Ads</label>
+            <label class="opt"><input data-save type="checkbox" name="channels" value="SEO">SEO</label>
+            <label class="opt"><input data-save type="checkbox" name="channels" value="LinkedIn">LinkedIn</label>
+            <label class="opt"><input data-save type="checkbox" name="channels" value="Email">Email</label>
+            <label class="opt"><input data-save type="checkbox" name="channels" value="WhatsApp">WhatsApp</label>
+            <label class="opt"><input data-save type="checkbox" name="channels" value="Eventos">Eventos</label>
+            <label class="opt"><input data-save type="checkbox" name="channels" value="Referidos">Referidos</label>
+          </div>
+        </div>
+        <div class="card s6"><h3>Recurrencia</h3><p class="help">¿Qué significa exactamente para SIMAC que un cliente sea recurrente?</p><textarea data-save id="l2_recurrence"></textarea></div>
+        <div class="card s6"><h3>Histórico de marketing</h3><p class="help">Qué hicieron, qué consideran que funcionó/no funcionó y cómo lo saben.</p><textarea data-save id="l2_history"></textarea></div>
+        <div class="card s6"><h3>Inversión / recursos</h3><p class="help">Puede ser rango. No forzar una cifra exacta.</p><textarea data-save id="l2_budget"></textarea></div>
+        <div class="card s6"><h3>Competencia / diferenciador</h3><p class="help">¿Por qué compra un cliente a SIMAC y no a otra opción?</p><textarea data-save id="l2_positioning"></textarea></div>
+      </div>
+    </section>
+
+    <section class="section" data-id="l3" data-title="07 · Nivel 3 · Auditoría">
+      <div class="levelIntro"><div><strong>NIVEL 3 · Lo pedimos después</strong><p>No necesitas obtener estos datos en la conversación. Necesitas saber si existen y quién puede entregarlos.</p></div><span class="badge audit">Post-reunión</span></div>
+      <div class="head"><div><h2>Checklist para auditoría</h2><p>Desmarca lo que no sea necesario. El objetivo es pedir sólo lo que ayude a comprobar hipótesis de Nivel 1.</p></div></div>
+
+      <div class="card">
+        <div class="auditGroup"><h4>A · NEGOCIO Y VENTAS</h4><p>Para entender qué vende SIMAC, cuánto, a quién y con qué recurrencia.</p></div>
+        <div class="checklist">
+          <label class="check"><input data-save type="checkbox" id="a1" checked><span>Ventas de últimos 12–24 meses con fecha, cliente, línea/solución, importe y ejecutivo si existe.</span></label>
+          <label class="check"><input data-save type="checkbox" id="a2" checked><span>Listado de líneas/productos/servicios y cuáles son prioritarios comercialmente.</span></label>
+          <label class="check"><input data-save type="checkbox" id="a3" checked><span>Base de clientes con historial de compra/servicio disponible.</span></label>
+          <label class="check"><input data-save type="checkbox" id="a4"><span>Información de márgenes o rentabilidad por línea, sólo si pueden compartirla.</span></label>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:14px">
+        <div class="auditGroup"><h4>B · CRM Y PROCESO COMERCIAL</h4><p>Para comprobar cómo entra, avanza y se pierde una oportunidad.</p></div>
+        <div class="checklist">
+          <label class="check"><input data-save type="checkbox" id="b1" checked><span>Acceso de lectura o export del CRM: contactos, oportunidades, etapas, actividades y fuentes.</span></label>
+          <label class="check"><input data-save type="checkbox" id="b2" checked><span>Definición actual de lead, oportunidad, cotización, venta y perdido.</span></label>
+          <label class="check"><input data-save type="checkbox" id="b3" checked><span>Pipeline actual y razones de pérdida si se registran.</span></label>
+          <label class="check"><input data-save type="checkbox" id="b4"><span>Proceso/SLA documentado de atención y seguimiento, si existe.</span></label>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:14px">
+        <div class="auditGroup"><h4>C · MARKETING Y MEDICIÓN</h4><p>Para separar percepción de desempeño medible.</p></div>
+        <div class="checklist">
+          <label class="check"><input data-save type="checkbox" id="c1" checked><span>Histórico de campañas de últimos 12 meses: objetivo, periodo, inversión y resultados disponibles.</span></label>
+          <label class="check"><input data-save type="checkbox" id="c2" checked><span>Reportes actuales de marketing y ventas.</span></label>
+          <label class="check"><input data-save type="checkbox" id="c3"><span>Acceso de lectura a Google Analytics / Search Console si están implementados.</span></label>
+          <label class="check"><input data-save type="checkbox" id="c4"><span>Acceso de lectura a plataformas publicitarias que realmente utilicen.</span></label>
+          <label class="check"><input data-save type="checkbox" id="c5"><span>Configuración de formularios, UTMs, conversiones y canales de entrada.</span></label>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:14px">
+        <div class="auditGroup"><h4>D · EQUIPO Y ESTRUCTURA</h4><p>Para que Yuri pueda diseñar funciones y operating model con evidencia.</p></div>
+        <div class="checklist">
+          <label class="check"><input data-save type="checkbox" id="d1" checked><span>Descripción de funciones actuales de la persona interna de marketing.</span></label>
+          <label class="check"><input data-save type="checkbox" id="d2" checked><span>Organigrama funcional o relación entre marketing, comercial y operación.</span></label>
+          <label class="check"><input data-save type="checkbox" id="d3"><span>Acuerdos/alcance con proveedores externos anteriores, si existe documentación útil.</span></label>
+          <label class="check"><input data-save type="checkbox" id="d4"><span>Herramientas y software utilizados por marketing/comercial.</span></label>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:14px">
+        <label>Responsables de entregar accesos / datos</label>
+        <textarea data-save id="audit_owners" placeholder="Quién entrega CRM, ventas, ads, analytics, documentos, etc."></textarea>
+        <label>Información que NO necesitamos pedir</label>
+        <textarea data-save id="audit_not_needed" placeholder="Para evitar pedir por pedir"></textarea>
+      </div>
+    </section>
+
+    <section class="section" data-id="summary" data-title="08 · Resumen">
+      <div class="head"><div><h2>08 · Resultado de la reunión</h2><p>Este resumen responde una sola pregunta: ¿tenemos suficiente para saber qué auditar?</p></div></div>
+      <div class="grid">
+        <div class="card s12">
+          <div class="outcome">
+            <h4>Al salir de la junta deberías tener:</h4>
+            <ul>
+              <li>Qué quiere crecer SIMAC.</li>
+              <li>Qué esperan que marketing produzca.</li>
+              <li>Qué problema perciben hoy.</li>
+              <li>Cómo funciona actualmente lead → venta.</li>
+              <li>Qué pueden medir y qué no.</li>
+              <li>Qué capacidades existen y cuáles faltan.</li>
+              <li>Qué debemos validar con auditoría.</li>
+              <li>Quién puede entregar la información.</li>
+            </ul>
+          </div>
+          <div class="actions">
+            <button class="btn primary" onclick="generateSummary()">Actualizar resumen</button>
+            <button class="btn" onclick="copySummary()">Copiar</button>
+            <button class="btn" onclick="downloadSummary()">Descargar .txt</button>
+          </div>
+          <pre id="summaryText">Presiona “Actualizar resumen”.</pre>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+</div>
+
+<script>
+const navItems=[
+ ['start','Inicio',''],
+ ['l1-business','Negocio','Nivel 1'],['l1-objective','Objetivo','Nivel 1'],['l1-process','Proceso','Nivel 1'],['l1-team','Equipo','Nivel 1'],['l1-close','Cierre','Nivel 1'],
+ ['l2','Si hay tiempo','Nivel 2'],['l3','Auditoría','Nivel 3'],['summary','Resumen','']
+];
+const nav=document.getElementById('nav');
+let lastGroup=null;
+navItems.forEach(([id,label,group],i)=>{
+ if(group && group!==lastGroup){const g=document.createElement('div');g.className='group';g.textContent=group;nav.appendChild(g);lastGroup=group}
+ const b=document.createElement('button');b.textContent=label;b.dataset.target=id;if(i===0)b.classList.add('active');b.onclick=()=>go(id);nav.appendChild(b);
+});
+function go(id){
+ document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active',s.dataset.id===id));
+ document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.target===id));
+ const s=document.querySelector(`.section[data-id="${id}"]`);
+ document.getElementById('topTitle').textContent=s?s.dataset.title:id;
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function sk(x){if(x.id)return 'simac60_'+x.id;if(x.name)return 'simac60_'+x.name+'_'+x.value;return ''}
+function save(x){const k=sk(x);if(!k)return;localStorage.setItem(k,JSON.stringify((x.type==='checkbox'||x.type==='radio')?x.checked:x.value));progress()}
+function restore(x){const k=sk(x),r=localStorage.getItem(k);if(r===null)return;try{const v=JSON.parse(r);if(x.type==='checkbox'||x.type==='radio')x.checked=!!v;else x.value=v}catch(e){}}
+document.querySelectorAll('[data-save]').forEach(x=>{restore(x);x.addEventListener('input',()=>save(x));x.addEventListener('change',()=>save(x))});
+function val(id){const x=document.getElementById(id);return x?String(x.value||'').trim():''}
+function radio(name){const x=document.querySelector(`[name="${name}"]:checked`);return x?x.value:''}
+const required=['l1_business_model','l1_growth_priorities','l1_why_now','l1_marketing_expectation','l1_success_6m','l1_lead_process','l1_perceived_leak','l1_metrics_known','l1_current_role','l1_missing_capabilities','l1_external_issues','l1_internal_external','l1_top3','l1_missing_info','l1_next_step'];
+function progress(){
+ const done=required.filter(id=>val(id)).length + (radio('trace')?1:0);
+ const total=required.length+1;
+ const pct=Math.round(done/total*100);
+ document.getElementById('pText').textContent=pct+'%';
+ document.getElementById('pBar').style.width=pct+'%';
+}
+function toggleClient(){document.getElementById('app').classList.toggle('clientMode')}
+function selectedChecks(){
+ const arr=[];
+ document.querySelectorAll('#l3 input[type=checkbox]').forEach(x=>{
+   if(x.checked){const t=x.closest('.check');if(t)arr.push(t.innerText.trim())}
+ });
+ return arr;
+}
+function missingCritical(){return required.filter(id=>!val(id))}
+const labels={
+ l1_business_model:'Cómo gana dinero SIMAC',
+ l1_growth_priorities:'Qué quieren crecer',
+ l1_why_now:'Por qué reforzar marketing ahora',
+ l1_marketing_expectation:'Qué esperan de marketing',
+ l1_success_6m:'Definición de éxito a 6 meses',
+ l1_business_goal:'Meta comercial relacionada',
+ l1_lead_process:'Proceso lead → venta',
+ l1_perceived_leak:'Fuga percibida',
+ l1_metrics_known:'Qué pueden medir hoy',
+ l1_current_role:'Rol interno actual',
+ l1_missing_capabilities:'Capacidades que faltan',
+ l1_external_issues:'Qué falló con apoyo externo',
+ l1_internal_external:'Interno vs externo',
+ l1_top3:'Top 3 temas a investigar',
+ l1_missing_info:'Información faltante',
+ l1_decision:'Quién decide',
+ l1_next_step:'Siguiente paso'
+};
+function generateSummary(){
+ let s=`SIMAC · DISCOVERY SUMMARY — 60 MIN
+
+1. NEGOCIO
+- Cómo gana dinero SIMAC: ${val('l1_business_model')||'PENDIENTE DE VALIDAR'}
+- Prioridades de crecimiento: ${val('l1_growth_priorities')||'PENDIENTE DE VALIDAR'}
+- No priorizar: ${val('l1_deprioritize')||'PENDIENTE DE VALIDAR'}
+- Por qué ahora: ${val('l1_why_now')||'PENDIENTE DE VALIDAR'}
+
+2. QUÉ DEBE LOGRAR MARKETING
+- Expectativa: ${val('l1_marketing_expectation')||'PENDIENTE DE VALIDAR'}
+- Éxito a 6 meses: ${val('l1_success_6m')||'PENDIENTE DE VALIDAR'}
+- Meta comercial relacionada: ${val('l1_business_goal')||'PENDIENTE DE VALIDAR'}
+
+3. SISTEMA ACTUAL
+- Proceso lead → venta: ${val('l1_lead_process')||'PENDIENTE DE VALIDAR'}
+- Fuga percibida: ${val('l1_perceived_leak')||'PENDIENTE DE VALIDAR'}
+- Evidencia de la fuga: ${val('l1_leak_evidence')||'PENDIENTE DE VALIDAR'}
+- Qué pueden medir: ${val('l1_metrics_known')||'PENDIENTE DE VALIDAR'}
+- ¿Se puede rastrear una venta al origen?: ${radio('trace')||'PENDIENTE DE VALIDAR'}
+
+4. EQUIPO Y ESTRUCTURA
+- Rol interno actual: ${val('l1_current_role')||'PENDIENTE DE VALIDAR'}
+- Capacidades faltantes: ${val('l1_missing_capabilities')||'PENDIENTE DE VALIDAR'}
+- Qué falló con apoyo externo: ${val('l1_external_issues')||'PENDIENTE DE VALIDAR'}
+- Interno vs externo: ${val('l1_internal_external')||'PENDIENTE DE VALIDAR'}
+
+5. QUÉ DEBEMOS AUDITAR
+- Top 3 temas: ${val('l1_top3')||'PENDIENTE DE VALIDAR'}
+- Información faltante: ${val('l1_missing_info')||'PENDIENTE DE VALIDAR'}
+
+6. GOBERNANZA DEL PROYECTO
+- Quién participa en la decisión: ${val('l1_decision')||'PENDIENTE DE VALIDAR'}
+- Siguiente paso: ${val('l1_next_step')||'PENDIENTE DE VALIDAR'}
+
+7. DOCUMENTACIÓN / ACCESOS A SOLICITAR
+- ${selectedChecks().join('\n- ')||'PENDIENTE DE DEFINIR'}
+
+8. PENDIENTES CRÍTICOS
+`;
+ const miss=missingCritical();
+ s += miss.length ? miss.map(id=>'- '+(labels[id]||id)).join('\n') : 'Nivel 1 cubierto suficientemente.';
+ s += `
+
+NOTA:
+Este resumen no es todavía un diagnóstico. Sirve para definir el alcance de la auditoría y la información que debe validarse antes de recomendar estructura, estrategia o implementación.`;
+ document.getElementById('summaryText').textContent=s;
+ return s;
+}
+function copySummary(){navigator.clipboard.writeText(generateSummary()).then(()=>alert('Resumen copiado.'))}
+function downloadSummary(){
+ const blob=new Blob([generateSummary()],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');
+ a.href=URL.createObjectURL(blob);a.download='SIMAC_Discovery_Summary_60min.txt';a.click();URL.revokeObjectURL(a.href);
+}
+function downloadJSON(){
+ const data={exported_at:new Date().toISOString(),fields:{}};
+ document.querySelectorAll('[data-save]').forEach(x=>data.fields[x.id||`${x.name}:${x.value}`]=(x.type==='checkbox'||x.type==='radio')?x.checked:x.value);
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const a=document.createElement('a');
+ a.href=URL.createObjectURL(blob);a.download='SIMAC_Discovery_60min_backup.json';a.click();URL.revokeObjectURL(a.href);
+}
+progress();
+</script>
+</body>
+</html>
