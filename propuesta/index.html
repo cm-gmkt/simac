@@ -20,14 +20,52 @@
     :focus-visible{outline:3px solid var(--gold);outline-offset:3px}#live{min-height:20px;font-size:12px;color:#0d7067;font-weight:700}button:disabled{opacity:.55;cursor:not-allowed}
     @media(max-width:900px){.hero-inner{grid-template-columns:1fr;gap:32px;padding:65px 0}.hero-panel{max-width:640px}.data-grid,.pricing,.route{grid-template-columns:1fr 1fr}.route-step:not(:last-child):after{display:none}.calendar-grid{grid-template-columns:1fr 1fr}.sim-result,.agenda{grid-template-columns:1fr}.agenda .note{grid-column:auto}.navlinks{display:none}}
     @media(max-width:650px){.container{width:min(100% - 28px,1160px)}.nav{height:64px}.nav .action{padding:9px 11px}.hero-inner{padding:48px 0 62px}.hero h1{font-size:40px}.hero p.lead{font-size:15px}.hero-panel{padding:22px}.section{padding:52px 0}.section.compact{padding:42px 0}.data-grid,.pricing,.route,.calendar-grid,.terms,.sim-controls,.scope-grid{grid-template-columns:1fr}.data-card{min-height:auto}.section-head{display:block}.price-card{padding:22px}.sim-head{padding:23px;display:block}.sim-head .pill{display:inline-block;margin-top:14px}.sim-body{padding:19px}.sim-result{gap:17px}.agenda{padding:22px}.agenda-row{grid-template-columns:1fr;gap:4px}.closing .container{display:block}.closing h2{font-size:30px}.closing .btn{margin-top:20px}.foot{display:block}.foot span{display:block;margin-bottom:6px}}
-    @media print{.top,.hero-btns,.sim-controls,.sim-buttons,.closing .btn,.price-card button{display:none!important}html,body{background:white!important;color:#152b3e!important}.hero{background:#193746!important;print-color-adjust:exact;-webkit-print-color-adjust:exact}.section{padding:28px 0}.hero-inner{padding:30px 0}.hero-panel{display:none}.pricing{grid-template-columns:repeat(3,1fr)}.price-card{box-shadow:none!important;transform:none!important}.sim{box-shadow:none}.sim-head{background:#193746!important;print-color-adjust:exact;-webkit-print-color-adjust:exact}.calendar-grid{grid-template-columns:repeat(4,1fr)}.closing{padding:26px 0;print-color-adjust:exact;-webkit-print-color-adjust:exact}.closing .container{display:block}a{color:inherit}.container{width:100%}.route-step,.data-card,.price-card,.date-card,.term-box{break-inside:avoid}.scope-grid{break-inside:avoid}}
+    /* Modalidades: elección primero, alcance y calendario después, inversión al final. */
+    .choice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-bottom:29px}
+    .plan-tile{appearance:none;border:2px solid #dbe5e5;background:#fff;padding:27px 24px 23px;border-radius:22px;text-align:left;display:flex;flex-direction:column;min-height:254px;position:relative;transition:transform .16s,box-shadow .16s,border-color .16s}
+    .plan-tile:hover{transform:translateY(-3px);box-shadow:0 17px 30px #17433d14}.plan-tile[aria-pressed="true"]{border-color:#16857d;box-shadow:0 14px 38px #16786a1b;background:#fbfffe}
+    .plan-tile.featured{border-color:#bdcbb4;background:linear-gradient(145deg,#fffdf7,#f1f7f1)}
+    .plan-tile.featured[aria-pressed="true"]{border-color:#b98b46;box-shadow:0 14px 42px #b98b4626}
+    .plan-tile .kicker{font-size:11px;color:#126e65;letter-spacing:.1em;font-weight:850}.plan-tile.featured .kicker{color:#855c25}
+    .plan-tile h3{font-size:23px;letter-spacing:-.033em;line-height:1.19;margin:14px 0 10px;color:#19384a}
+    .plan-tile p{font-size:13px;color:#627786;margin:0 0 18px;flex:1}.plan-tile .tile-link{display:inline-flex;gap:8px;align-items:center;font-size:13px;font-weight:850;color:#0e766c}
+    .plan-tile.featured .tile-link{color:#88612b}.plan-tile .ribbon{position:absolute;right:14px;top:-12px;border-radius:99px;background:#e8c789;color:#5d441a;letter-spacing:.05em;font-weight:900;font-size:10px;padding:7px 12px;box-shadow:0 5px 15px #75604519}
+    .mode-panel{background:#fff;border:1px solid #d9e5e4;border-radius:26px;overflow:hidden;box-shadow:0 25px 48px #18483f12;scroll-margin-top:86px}
+    .mode-top{background:linear-gradient(125deg,#153a4b,#1a625c);color:#fff;padding:35px 40px;display:flex;align-items:start;justify-content:space-between;gap:22px}
+    .mode-top.premium{background:linear-gradient(117deg,#153747,#2a625a 73%,#6c6543)}
+    .mode-top .mode-kicker{color:#b8e0d7;font-size:11px;letter-spacing:.14em;font-weight:850}
+    .mode-top h3{font-size:clamp(27px,3.4vw,40px);letter-spacing:-.038em;line-height:1.1;margin:11px 0}.mode-top p{font-size:14px;color:#e0edeb;max-width:710px;margin:0}
+    .mode-top .mode-num{flex-shrink:0;width:48px;height:48px;border-radius:14px;border:1px solid #93c7c1;display:grid;place-items:center;color:#e5fffa;font-weight:850}
+    .mode-inside{padding:33px 39px 40px}.mode-label{font-size:11px;font-weight:850;color:#14766d;letter-spacing:.12em;text-transform:uppercase;margin:0 0 8px}
+    .mode-inside h4{font-size:22px;line-height:1.2;letter-spacing:-.025em;margin:0 0 12px}.mode-inside .muted{color:#60747e;font-size:13px;margin:0}
+    .mode-banner{background:#eff7f5;border:1px solid #cfe7e1;border-radius:17px;padding:20px 23px;margin-bottom:23px}.mode-banner strong{font-size:17px;color:#1d514b}.mode-banner p{color:#54736b;margin:6px 0 0;font-size:13px}
+    .mode-banner.premium{background:#fff8e8;border-color:#edd8a8}.mode-banner.premium strong{color:#80602a}.mode-banner.premium p{color:#806e4d}
+    .config-box{border:1px solid #dbe7e4;border-radius:17px;background:#fafcfc;padding:21px 22px;margin:25px 0}
+    .config-fields{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:15px}.config-fields label{display:block;color:#4b6570;font-size:12px;font-weight:800;margin-bottom:8px}.config-fields select{width:100%;padding:12px;border:1px solid #d0dedb;border-radius:9px;background:#fff;color:#1b4551;font-size:13px}
+    .scenario-note{border:1px solid #d6e4c8;background:#f1f7ed;color:#4f6a3f;border-radius:11px;padding:13px 15px;font-size:13px;margin-top:14px}.scenario-note.warning{background:#fff8eb;border-color:#efd9aa;color:#775c2f}
+    .sim-example{margin-top:12px;padding:15px 18px;border-radius:11px;background:#fff;border:1px dashed #bfd5d0}.sim-example strong{font-size:12px;color:#25594f}.sim-example p{font-size:13px;margin:5px 0 0;color:#526b70}
+    .mode-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:17px;margin-top:25px}.info-panel{padding:24px 25px;border-radius:17px;border:1px solid #dce7e5;background:#fff}
+    .info-panel.soft{background:#f6f9f8}.info-panel ul{margin:0;padding-left:18px;font-size:13px;color:#455e69}.info-panel li{margin-bottom:10px}.info-panel li:last-child{margin:0}
+    .cal-title{margin-top:34px}.calendar-inside{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:15px}.calendar-entry{border:1px solid #dce6e2;border-radius:14px;padding:17px;background:#f8faf9}
+    .calendar-entry .date{font-size:11px;letter-spacing:.05em;color:#15756c;font-weight:900;text-transform:uppercase}.calendar-entry strong{display:block;font-size:15px;margin:8px 0 5px}.calendar-entry .time{font-size:11px;color:#146b61;font-weight:850}.calendar-entry p{font-size:12px;color:#647880;margin:6px 0 0}
+    .calendar-entry.followup{background:#eaf5ef;border-color:#bcded2}
+    .daily-box{margin-top:21px;background:#173c4b;color:#fff;border-radius:15px;padding:22px 25px}.daily-box h4{color:#fff}.daily-box p{font-size:13px;color:#d7e5e4;margin:0}.daily-box strong{color:#b7e8da}
+    .responsibility-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:15px 0 0}.responsibility{border:1px solid #dce6e4;border-radius:15px;padding:21px;background:#fff}.responsibility h5{font-size:15px;margin:0 0 8px}.responsibility p{font-size:12px;color:#5c747d;margin:0}
+    .limit-box{margin-top:18px;border-left:3px solid #d0a467;background:#fffbf3;padding:18px 21px;border-radius:0 12px 12px 0}.limit-box h5{margin:0 0 6px;font-size:14px}.limit-box p{margin:0;font-size:12px;color:#6c6353}
+    .price-last{border-top:1px solid #dce8e2;margin-top:34px;padding:28px 0 0;display:flex;gap:22px;justify-content:space-between;align-items:center}.price-last p{color:#697e7b;font-size:12px;margin:5px 0 0;max-width:540px}
+    .price-last .money{font-size:44px;letter-spacing:-.06em;line-height:1;font-weight:900;color:#153f43;white-space:nowrap}.price-last .money span{font-size:13px;color:#78918b;letter-spacing:0;margin-left:6px}
+    .price-last .money-premium{color:#94651d}
+    .panel-actions{margin-top:22px;display:flex;flex-wrap:wrap;gap:11px;align-items:center}
+    @media(max-width:900px){.choice-grid{grid-template-columns:1fr 1fr}.mode-grid{grid-template-columns:1fr}}
+    @media(max-width:650px){.choice-grid,.calendar-inside,.config-fields,.responsibility-grid{grid-template-columns:1fr}.plan-tile{min-height:unset}.mode-top{padding:26px 24px}.mode-top .mode-num{width:37px;height:37px}.mode-inside{padding:22px 18px 27px}.info-panel{padding:18px}.price-last{display:block}.price-last .money{margin-top:15px}.panel-actions .btn{width:100%}}
+    @media print{.top,.hero-btns,.panel-actions,.config-box,.closing .btn{display:none!important}html,body{background:#fff!important}.section{padding:25px 0}.hero-inner{padding:30px 0}.hero-panel{display:none}.hero{background:#193746!important;print-color-adjust:exact;-webkit-print-color-adjust:exact}.choice-grid{grid-template-columns:repeat(3,1fr);gap:9px}.plan-tile{min-height:135px;padding:15px;break-inside:avoid}.plan-tile p{display:none}.plan-tile h3{font-size:17px}.plan-tile .tile-link{font-size:11px}.mode-top{padding:20px 25px;print-color-adjust:exact;-webkit-print-color-adjust:exact}.mode-inside{padding:22px}.mode-grid,.responsibility-grid,.calendar-inside{grid-template-columns:repeat(2,1fr)}.calendar-entry,.info-panel,.responsibility,.price-last,.limit-box{break-inside:avoid}.closing{padding:26px 0;print-color-adjust:exact;-webkit-print-color-adjust:exact}.closing .container{display:block}.container{width:100%}.route-step,.data-card,.term-box{break-inside:avoid}}
   </style>
 </head>
 <body>
   <header class="top">
     <div class="container nav">
       <a href="#inicio" class="brand" aria-label="Inicio SIMAC"><span class="brand-mark">S</span><span>SIMAC<small>PROPUESTA DE MARKETING</small></span></a>
-      <nav class="navlinks" aria-label="Secciones"><a href="#diagnostico">Punto de partida</a><a href="#modalidades">Modalidades</a><a href="#simulador">Comparador</a><a href="#calendario">Calendario</a></nav>
+      <nav class="navlinks" aria-label="Secciones"><a href="#diagnostico">Punto de partida</a><a href="#modalidades">Elegir modalidad</a><a href="#simulador">Simulación</a><a href="#condiciones">Acuerdos</a></nav>
       <button class="action" type="button" onclick="window.print()">Imprimir / PDF</button>
     </div>
   </header>
@@ -60,7 +98,7 @@
           <div class="data-card"><span class="tag">Oportunidad de negocio</span><span class="num">57 / 77</span><div class="sub">clientes de renta con facturación en varios meses.</div><p>No demuestra contratos de 12 meses; sí invita a explorar esa necesidad.</p></div>
         </div>
         <p class="caveat">Datos del diagnóstico ejecutivo independiente, corte del 27 de octubre de 2026. Se refieren a los archivos revisados; no miden por sí solos la operación actual completa. Se reportó posteriormente que las campañas hoy están inactivas, situación por confirmar en las cuentas.</p>
-        <div class="banner"><div class="icon" aria-hidden="true">✦</div><div><strong>El diagnóstico ejecutivo se entrega junto con esta propuesta como valor adicional, sin costo nuevo por realizarlo.</strong><p>No es una cuarta modalidad ni una nueva auditoría. Es la base para elegir qué nivel de apoyo necesita SIMAC.</p></div></div>
+        <div class="banner"><div class="icon" aria-hidden="true">✦</div><div><strong>El diagnóstico ejecutivo se entrega junto con esta propuesta como valor adicional.</strong><p>No es una cuarta modalidad ni una nueva auditoría. Es la base para elegir qué nivel de apoyo necesita SIMAC.</p></div></div>
       </div>
     </section>
 
@@ -71,53 +109,59 @@
     </section>
 
     <section class="section" id="modalidades">
-      <div class="container"><div class="section-head"><div><p class="section-label">03 / Formas de colaboración</p><h2>Tres opciones. Una decisión a la medida.</h2><p class="intro">No es necesario contratar la opción más amplia. Cada modalidad parte de una necesidad y de un nivel diferente de involucramiento.</p></div></div>
-        <div class="pricing" role="group" aria-label="Elegir modalidad">
-          <article class="price-card" data-plan="capacitacion" tabindex="0" role="button" aria-pressed="false"><span class="topline">01 · APRENDER</span><h3>Capacitación</h3><div class="price">$6,500<span class="currency">MXN</span></div><p class="small">Pago único · 2 semanas + refuerzo</p><p class="description">Aprender a crear campañas, hacer ajustes, leer resultados y organizar el trabajo de una sola persona.</p><button type="button">Elegir capacitación →</button></article>
-          <article class="price-card active" data-plan="implementacion" tabindex="0" role="button" aria-pressed="true"><span class="topline">02 · APRENDER Y ACTIVAR</span><h3>Implementación + capacitación</h3><div class="price">$8,500<span class="currency">MXN</span></div><p class="small">Pago único · arranque delimitado</p><p class="description">Entrar juntas a las campañas, activar una primera iniciativa y aprender mientras se ejecuta.</p><button type="button">Elegir implementación →</button></article>
-          <article class="price-card" data-plan="integral" tabindex="0" role="button" aria-pressed="false"><span class="topline">03 · DIRIGIR Y CRECER</span><h3>Acompañamiento integral</h3><div class="price">$12,000<span class="currency">MXN</span></div><p class="small">Pago único · primer mes de arranque</p><p class="description">Responsable externa de campañas: primero dirige y opera; después dirige y supervisa.</p><button type="button">Elegir integral →</button></article>
+      <div class="container">
+        <div class="section-head"><div><p class="section-label">03 / Elige una modalidad</p><h2>¿Cómo quieres que comience SIMAC?</h2><p class="intro">Selecciona una opción. Abajo se mostrará exactamente qué incluye, cómo sería el mes de trabajo, hasta dónde llega mi participación y, al final de todo, la inversión.</p></div></div>
+        <div class="choice-grid" role="group" aria-label="Elegir una de las tres modalidades">
+          <button class="plan-tile" type="button" data-plan="capacitacion" aria-pressed="false"><span class="kicker">01 · APRENDER</span><h3>Capacitación</h3><p>Para que la persona actual aprenda a crear, leer y ajustar campañas y organice mejor su día a día.</p><span class="tile-link">Ver todo lo que incluye →</span></button>
+          <button class="plan-tile" type="button" data-plan="implementacion" aria-pressed="false"><span class="kicker">02 · APRENDER Y ACTIVAR</span><h3>Implementación + capacitación</h3><p>Aprender con campañas reales en Meta y Google Ads, desde lo básico hasta los ajustes y el impulso orgánico.</p><span class="tile-link">Explorar esta modalidad →</span></button>
+          <button class="plan-tile featured" type="button" data-plan="integral" aria-pressed="true"><span class="ribbon">MAYOR ACOMPAÑAMIENTO</span><span class="kicker">03 · DIRIGIR Y DESARROLLAR</span><h3>Acompañamiento integral</h3><p>Dirección estratégica y operación para rentas y pólizas: anuncios, contenido orgánico, optimización y conexión con ventas.</p><span class="tile-link">Conocer el alcance completo →</span></button>
         </div>
-      </div>
-    </section>
 
-    <section class="section compact" id="simulador">
-      <div class="container"><div class="section-head"><div><p class="section-label">04 / Simulador de alcance</p><h2>¿Qué incluye cada alternativa?</h2><p class="intro">Cambia la modalidad y las condiciones de SIMAC para explorar qué podría comenzar y qué debe quedar pendiente.</p></div></div>
-        <div class="sim">
-          <div class="sim-head"><div><span class="section-label" style="color:#b4e7de">SIMULACIÓN INTERACTIVA</span><h3 id="sim-title">Implementación + capacitación</h3><p id="sim-subtitle">Aprender mientras se activan campañas.</p></div><span class="pill" id="sim-badge">Modalidad 02</span></div>
-          <div class="sim-body">
-            <div class="sim-controls">
-              <div class="field"><label for="mode">Modalidad</label><select id="mode"><option value="capacitacion">01 · Capacitación</option><option value="implementacion" selected>02 · Implementación + capacitación</option><option value="integral">03 · Acompañamiento integral</option></select></div>
-              <div class="field"><label for="duration">Duración</label><select id="duration"><option value="2" selected>2 semanas de capacitación (base)</option><option value="3">3 semanas (precio por definir)</option><option value="4">4 semanas (precio por definir)</option></select></div>
-              <div class="field"><label for="skills">Capacidad actual de marketing</label><select id="skills"><option value="no-evaluada">Todavía no evaluada</option><option value="basica">Necesita apoyo para crear campañas</option><option value="operativa">Puede operarlas con supervisión</option></select></div>
-              <div class="field"><label for="readiness">Condiciones para lanzar anuncios</label><select id="readiness"><option value="pendiente">Oferta, cuentas o presupuesto por validar</option><option value="listas">Suponer que todo está aprobado y listo</option></select></div>
+        <div class="mode-panel" id="simulador" aria-label="Simulación de la modalidad seleccionada">
+          <div class="mode-top premium" id="mode-top"><div><p class="mode-kicker" id="sim-badge">MODALIDAD 03 · MAYOR ACOMPAÑAMIENTO</p><h3 id="sim-title">Acompañamiento integral</h3><p id="sim-subtitle">Al inicio dirijo y opero; después dirijo y superviso mientras SIMAC gana autonomía.</p></div><span class="mode-num" id="sim-num">03</span></div>
+          <div class="mode-inside">
+            <div class="mode-banner premium" id="sim-value"><strong id="sim-goal">Objetivo: activar campañas y desarrollar la operación interna con dirección temporal.</strong><p id="sim-outcome">Al final habrá una base real para continuar y decisiones claras para mejorar.</p></div>
+
+            <div class="config-box">
+              <p class="mode-label">Haz una simulación para SIMAC</p>
+              <h4>¿Qué necesita impulsar primero?</h4>
+              <p class="muted">Estos ajustes muestran cómo enfocar el trabajo. No cambian el precio ni prometen resultados comerciales específicos.</p>
+              <div class="config-fields">
+                <div><label for="focus" id="focus-label">Línea comercial prioritaria</label><select id="focus"><option value="rentas">Rentas de equipos</option><option value="polizas">Pólizas y servicios</option><option value="equipos">Venta de equipos</option></select></div>
+                <div><label for="readiness">Condiciones para lanzar campañas</label><select id="readiness"><option value="pendiente">Aún falta validar oferta, accesos o presupuesto</option><option value="listas">Ya están listos y aprobados</option></select></div>
+              </div>
+              <div class="scenario-note warning" id="scenario" role="status">Para activar anuncios se requieren la oferta, los accesos y el presupuesto aprobados.</div>
+              <div class="sim-example"><strong>Ejemplo de aplicación para esta línea</strong><p id="sim-example">Se definirá una campaña según la prioridad comercial y los recursos confirmados por SIMAC.</p></div>
             </div>
-            <div class="sim-result">
-              <aside class="sim-price"><h4>Inversión única inicial</h4><div class="large" id="sim-price">$8,500</div><div class="note" id="sim-period">2 al 14 de noviembre + seguimiento el 5 de diciembre</div><div class="rule"></div><h4>Resultado esperado</h4><p class="note" id="sim-outcome">Una campaña inicial en marcha y aprendizaje práctico.</p><div class="rule"></div><h4>No incluido automáticamente</h4><ul><li>Presupuesto de los anuncios</li><li>Producción de diseños y videos</li><li>Atención y cierre de ventas</li><li>Operación indefinida</li></ul></aside>
-              <div class="sim-details"><h4>Actividades y entregables</h4><p class="goal" id="sim-description"></p><ul id="sim-list"></ul><div class="scenario" id="scenario" role="status">Las campañas sólo podrán activarse cuando SIMAC valide la oferta, los recursos y la atención comercial.</div></div>
+
+            <div class="mode-grid">
+              <article class="info-panel"><p class="mode-label">Qué incluye esta modalidad</p><h4>Actividades durante el trabajo</h4><ul id="sim-includes"></ul></article>
+              <article class="info-panel soft"><p class="mode-label">Qué recibe SIMAC</p><h4>Resultados y materiales de trabajo</h4><ul id="sim-deliverables"></ul></article>
             </div>
-            <div class="scope-grid"><div class="scope-box"><h4>Qué hará Carel</h4><p id="sim-carel"></p></div><div class="scope-box"><h4>Qué hará SIMAC</h4><p id="sim-simac"></p></div><div class="scope-box"><h4>Hasta dónde llega el alcance</h4><p id="sim-limits"></p></div></div>
-            <div class="sim-buttons"><button id="copy" class="btn btn-dark" type="button">Copiar resumen elegido</button><button id="download" class="btn btn-light" type="button">Descargar resumen (.txt)</button><button class="btn btn-light" type="button" onclick="window.print()">Guardar / imprimir PDF</button><span id="live" aria-live="polite"></span></div>
+
+            <div class="cal-title"><p class="mode-label">Calendario de esta modalidad</p><h4 id="sim-duration">Cómo se distribuye el trabajo</h4><p class="muted">Horarios propuestos en Sonora. Cada modalidad incluye únicamente las fechas que aparecen aquí; se confirma disponibilidad antes de iniciar.</p></div>
+            <div class="calendar-inside" id="sim-calendar"></div>
+
+            <div class="daily-box"><p class="mode-label" style="color:#b2e5d8">La rutina de la persona de marketing</p><h4 id="sim-daily-title">Aprender con acompañamiento directo</h4><p id="sim-daily"></p></div>
+
+            <div style="margin-top:30px"><p class="mode-label">Responsables y límites</p><h4>Quién hace qué y qué no está incluido</h4></div>
+            <div class="responsibility-grid">
+              <div class="responsibility"><h5>Mi participación · Carel</h5><p id="sim-carel"></p></div>
+              <div class="responsibility"><h5>Participación de SIMAC</h5><p id="sim-simac"></p></div>
+            </div>
+            <div class="limit-box"><h5>Hasta dónde llega esta modalidad</h5><p id="sim-limits"></p></div>
+            <div class="limit-box" style="border-left-color:#9baab0;background:#f7f9fa"><h5>No incluido</h5><p id="sim-exclusions"></p></div>
+
+            <div class="price-last" id="precio"><div><p class="mode-label">La inversión · una vez revisado el alcance</p><h4>Pago único para iniciar</h4><p id="sim-price-note">No es una mensualidad automática. El presupuesto de publicidad se paga por separado.</p></div><div class="money money-premium" id="sim-price">$12,000<span>MXN</span></div></div>
+            <div class="panel-actions"><button id="copy" class="btn btn-dark" type="button">Copiar esta modalidad</button><button id="download" class="btn btn-light" type="button">Descargar resumen</button><button class="btn btn-light" type="button" onclick="window.print()">Guardar en PDF</button><span id="live" aria-live="polite"></span></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="agenda">
-      <div class="container"><div class="section-head"><div><p class="section-label">05 / Desarrollo de la persona interna</p><h2>¿Cómo se organiza un día de marketing?</h2><p class="intro">Esta es una agenda de ejemplo para probar durante la capacitación. Se adapta según sus tareas, conocimientos y carga real de trabajo.</p></div></div>
-        <div class="agenda"><div><span class="tag">Una persona · agenda posible</span><h3>Una rutina que pueda sostener, no una lista infinita.</h3><p>La capacitación también servirá para observar qué actividades realiza con autonomía, qué le toma más tiempo y qué necesita apoyo.</p></div><div class="agenda-grid"><div class="agenda-row"><strong>Al iniciar</strong><span>Revisar prioridades y pendientes del día.</span></div><div class="agenda-row"><strong>Campañas</strong><span>Ver presupuesto, mensajes recibidos y resultados; decidir si hace falta ajustar algo.</span></div><div class="agenda-row"><strong>Contenido</strong><span>Preparar o coordinar publicaciones y materiales prioritarios.</span></div><div class="agenda-row"><strong>Con comercial</strong><span>Preguntar qué ocurrió con los interesados que llegaron de marketing.</span></div><div class="agenda-row"><strong>Al cerrar</strong><span>Registrar avances, pendientes y el primer paso del día siguiente.</span></div></div><p class="note">No todas estas actividades requieren el mismo tiempo cada día. La carga real se revisará durante los ejercicios y no se asumirá que una sola persona puede resolverlo todo.</p></div>
-      </div>
-    </section>
-
-    <section class="section" id="calendario">
-      <div class="container"><div class="section-head"><div><p class="section-label">06 / Calendario propuesto</p><h2>Capacitación con fechas claras.</h2><p class="intro">La base son dos semanas en noviembre y un refuerzo al inicio de diciembre. Los sábados están planteados a las 2:00 p. m.; su duración se confirmará antes de iniciar.</p></div></div>
-        <div class="calendar-grid"><div class="date-card"><span class="day">Lunes a viernes</span><h4>2–6 de noviembre</h4><p>Primera semana de capacitación y ejercicios.</p><span class="time">8:30–9:00 a. m.</span></div><div class="date-card"><span class="day">Sábado</span><h4>7 de noviembre</h4><p>Dudas, práctica y aplicación de lo aprendido.</p><span class="time">2:00 p. m.</span></div><div class="date-card"><span class="day">Lunes a viernes</span><h4>9–13 de noviembre</h4><p>Segunda semana de ejercicios y revisión de resultados.</p><span class="time">8:30–9:00 a. m.</span></div><div class="date-card"><span class="day">Sábado</span><h4>14 de noviembre</h4><p>Revisión de ejercicios y aprendizajes.</p><span class="time">2:00 p. m.</span></div><div class="date-card"><span class="day">Acompañamiento integral</span><h4>16–27 de noviembre</h4><p>Transición propuesta: de dirigir y operar a dirigir y supervisar.</p><span class="time">Horario de trabajo acordado</span></div><div class="date-card"><span class="day">Seguimiento</span><h4>5 de diciembre</h4><p>Refuerzo, preguntas y evaluación de continuidad.</p><span class="time">2:00 p. m.</span></div><div class="date-card"><span class="day">Modalidades 1 y 2</span><h4>Base de 2 semanas</h4><p>10 sesiones entre semana, 2 sábados y un seguimiento en diciembre.</p><span class="time">Duración sabatina por confirmar</span></div><div class="date-card"><span class="day">Modalidad 3</span><h4>Primer mes de arranque</h4><p>Operación directa al inicio y supervisión progresiva después.</p><span class="time">Alcance limitado a 4 semanas</span></div></div>
-        <p class="caveat">Horarios propuestos en hora de Sonora. Cualquier extensión de capacitación a tres o cuatro semanas requiere acordar un nuevo precio. Las fechas están sujetas a confirmación de disponibilidad y condiciones de inicio.</p>
-      </div>
-    </section>
-
     <section class="section compact" id="condiciones">
-      <div class="container"><div class="section-head"><div><p class="section-label">07 / Acuerdos para iniciar</p><h2>Claridad desde el primer día.</h2><p class="intro">Los tres precios son de pago único por la intervención inicial descrita. No implican una mensualidad ni continuidad automática.</p></div></div>
-        <div class="terms"><div class="term-box"><h3>SIMAC proporciona</h3><ul><li>Una persona responsable que participe en las sesiones y actividades.</li><li>Accesos autorizados a cuentas y herramientas, cuando correspondan.</li><li>Ofertas, materiales y presupuesto publicitario aprobado.</li><li>Información y seguimiento comercial de los interesados.</li><li>Validaciones necesarias antes de publicar anuncios.</li></ul></div><div class="term-box"><h3>Alcance y límites</h3><ul><li>Los honorarios no incluyen el dinero invertido en publicidad.</li><li>No se prometen cantidades específicas de interesados, cotizaciones o ventas.</li><li>Producción continua de contenido, diseños y videos no incluida.</li><li>Cambios de CRM, desarrollo web o nuevas automatizaciones requieren otro alcance.</li><li>Si se necesitan más campañas, plataformas, horas o periodos, se acuerdan por separado.</li></ul></div></div>
+      <div class="container"><div class="section-head"><div><p class="section-label">04 / Acuerdos para iniciar</p><h2>Claridad desde el primer día.</h2><p class="intro">Cualquiera de las tres opciones se contrata con un pago único y un alcance específico. No implica continuidad automática.</p></div></div>
+        <div class="terms"><div class="term-box"><h3>SIMAC proporciona</h3><ul><li>Una persona responsable que participe en las sesiones y actividades.</li><li>Accesos autorizados a cuentas y herramientas, cuando correspondan.</li><li>Ofertas, materiales y presupuesto publicitario aprobado.</li><li>Información y seguimiento comercial de los interesados.</li><li>Validaciones necesarias antes de publicar anuncios.</li></ul></div><div class="term-box"><h3>Alcance y límites generales</h3><ul><li>Los honorarios no incluyen el dinero invertido en publicidad.</li><li>No se prometen cantidades específicas de interesados, cotizaciones o ventas.</li><li>Producción continua de contenido, diseños y videos no incluida.</li><li>Cambios de Odoo, desarrollo web y automatizaciones activas requieren otro alcance, incluso en la modalidad integral.</li><li>Más campañas, plataformas, horas o periodos se acuerdan por separado.</li></ul></div></div>
         <div class="banner"><div class="icon" aria-hidden="true">✓</div><div><strong>Un pago único para iniciar, con un alcance definido.</strong><p>Al finalizar se revisará lo aprendido, lo que ya puede continuar SIMAC y si necesita otro periodo de apoyo. La modalidad seleccionada se confirma antes de iniciar.</p></div></div>
       </div>
     </section>
@@ -129,35 +173,159 @@
   <script>
   (function(){
     const data={
-      capacitacion:{label:'Capacitación',price:6500,sub:'Aprender a manejar campañas y organizar el trabajo.',outcome:'La persona responsable desarrolla habilidades para preparar, revisar y ajustar campañas.',list:['10 sesiones de 30 minutos entre semana, del 2 al 13 de noviembre.','Sesiones de práctica los sábados 7 y 14 de noviembre a las 2:00 p. m.','Cómo crear anuncios, elegir público y configurar presupuesto.','Cómo hacer ajustes y leer resultados sin confundir clics con interesados reales.','Ejercicio para ordenar el día y la semana de una sola persona.','Sesión de seguimiento el sábado 5 de diciembre a las 2:00 p. m.'],carel:'Enseña, resuelve dudas, revisa ejercicios y orienta la organización del trabajo.',simac:'La persona interna practica, prepara ejercicios y aplica lo aprendido.',limits:'No incluye que Carel active o administre campañas reales.'},
-      implementacion:{label:'Implementación + capacitación',price:8500,sub:'Aprender mientras una campaña inicial entra en operación.',outcome:'Una primera campaña activada, si se cumplen los requisitos, y conocimientos transferidos a marketing.',list:['Incluye la capacitación base de dos semanas y el refuerzo de diciembre.','Revisión de la cuenta publicitaria y preparación de una campaña inicial.','Configuración y lanzamiento por Carel junto con la persona interna.','Primera revisión de resultados y ajustes delimitados.','Guía sencilla para que SIMAC pueda continuar el seguimiento.'],carel:'Entra a la cuenta, prepara y activa una campaña, enseña y realiza los primeros ajustes.',simac:'Aprueba oferta y presupuesto, proporciona materiales y atiende los interesados.',limits:'Una plataforma, una línea comercial y una campaña inicial. Sin operación indefinida.'},
-      integral:{label:'Acompañamiento integral de arranque',price:12000,sub:'Primero dirigir y operar; después dirigir y supervisar.',outcome:'Operación inicial en marcha y transición progresiva de actividades hacia la persona interna.',list:['Primeras dos semanas: Carel dirige y opera las campañas iniciales acordadas.','Durante ese periodo se realiza capacitación práctica.','Semanas 3 y 4: SIMAC comienza a ejecutar tareas y Carel supervisa.','Revisión semanal de resultados e información comercial.','Hasta dos campañas de una línea prioritaria y una plataforma.','Cierre y seguimiento en la primera semana de diciembre.'],carel:'Asume temporalmente la dirección y operación de campañas; transfiere tareas y pasa a supervisar.',simac:'Asigna responsable, valida ofertas y decisiones, produce materiales y da seguimiento comercial.',limits:'Primer mes de arranque, hasta dos campañas y una plataforma. No es dirección permanente del departamento.'}
+      capacitacion:{
+        num:'01',label:'Capacitación',price:6500,
+        sub:'Víctor aprende a crear, revisar y ajustar campañas y a organizar su trabajo diario.',
+        goal:'Que Víctor aprenda a preparar y revisar campañas sin depender de alguien externo para cada ajuste.',
+        outcome:'Víctor practicará la creación de anuncios, lectura de resultados, decisiones de ajuste y una agenda realista para el departamento.',
+        includes:[
+          '10 sesiones de 30 minutos, de lunes a viernes durante las primeras dos semanas de noviembre (8:30 a 9:00 a. m.).',
+          'Empezar desde lo básico: cómo funciona una campaña, para qué sirve, a quién se dirige y cómo se define el presupuesto.',
+          'Conocer los primeros pasos de creación de anuncios, usando ejemplos de Meta y Google Ads.',
+          'Practicar cómo interpretar resultados y saber cuándo conviene mantener o ajustar un anuncio.',
+          'Diferenciar clics, mensajes e interesados reales para no tomar decisiones con números confusos.',
+          'Construir con Víctor una agenda de trabajo para una sola persona: campañas, contenido, pendientes y relación con ventas.',
+          'Seguimiento el sábado 5 de diciembre a las 2:00 p. m.: una hora para resolver dudas, practicar y reforzar lo aprendido; se puede extender si hace falta para cerrar los temas.'
+        ],
+        deliverables:[
+          'Un ejercicio de campaña preparado para practicar (sin lanzamiento contratado).',
+          'Lista sencilla de indicadores que debe revisar y cómo interpretarlos.',
+          'Agenda de ejemplo adaptada a las tareas y disponibilidad de Víctor.',
+          'Revisión final de lo que Víctor ya puede hacer por sí mismo y dónde todavía necesita apoyo.'
+        ],
+        duration:'Dos semanas de capacitación + seguimiento el sábado 5 de diciembre',
+        calendar:[
+          {date:'02–06 NOV · LUNES A VIERNES',title:'Semana 1 · Preparar campañas',time:'8:30–9:00 a. m.',note:'Entender la cuenta publicitaria, objetivos, presupuesto, públicos y el orden del día.'},
+          {date:'09–13 NOV · LUNES A VIERNES',title:'Semana 2 · Practicar y leer resultados',time:'8:30–9:00 a. m.',note:'Ejercicios de configuración, métricas, decisiones y organización de tareas.'},
+          {date:'05 DIC · SÁBADO',title:'Seguimiento y refuerzo',time:'2:00–3:00 p. m. · 60 minutos',note:'Dudas acumuladas, práctica, retroalimentación y capacidad de Víctor. Posibilidad de extender si es necesario.',followup:true}
+        ],
+        dailyTitle:'Una agenda posible para Víctor',
+        daily:'Al iniciar: prioridades y pendientes. Después: revisar campañas y preparar materiales. Durante el día: coordinar con ventas qué pasó con los contactos. Al cierre: anotar avances, dudas y siguiente acción. Se ajustará según su carga real; no se supondrá que una sola persona puede hacer todo.',
+        carel:'Imparto las sesiones, preparo ejemplos, reviso ejercicios, respondo dudas y ayudo a identificar hasta dónde llega la capacidad actual.',
+        simac:'Víctor asiste, practica entre sesiones, comparte su rutina actual y realiza los ejercicios. Su responsable facilita información y prioridades.',
+        limits:'10 sesiones de 30 minutos en noviembre y un seguimiento inicialmente de una hora el sábado 5 de diciembre. Orientación y revisión de ejercicios: no incluye operar anuncios.',
+        exclusions:'No activo ni administro campañas, no produzco piezas gráficas o videos y no configuro Odoo ni automatizaciones.',
+        priceNote:'Pago único por capacitación y seguimiento. No hay cargo mensual ni inversión publicitaria incluida.'
+      },
+      implementacion:{
+        num:'02',label:'Implementación + capacitación',price:8500,
+        sub:'Víctor aprende desde cero mientras activamos campañas en Meta y Google Ads y mejoramos con resultados reales.',
+        goal:'Reactivar publicidad en Meta y Google Ads, mientras Víctor aprende a ejecutarla, medirla y conectarla con las publicaciones orgánicas.',
+        outcome:'Campañas iniciales en ambas plataformas, aprendizaje práctico durante noviembre y una agenda concreta para comenzar diciembre.',
+        includes:[
+          'Capacitación de 30 minutos de lunes a viernes, de 8:30 a 9:00 a. m., durante las cuatro semanas de noviembre: de fundamentos a aplicación real.',
+          'Primera etapa: objetivos, públicos, presupuestos, anuncios y diferencias entre Meta y Google Ads, sin dar por hecho conocimientos previos.',
+          'Configurar y poner en marcha UNA campaña en Meta y UNA en Google Ads (AdWords), para la línea comercial que SIMAC priorice.',
+          'Víctor participa en la configuración, observa las decisiones y después practica cómo revisar ambas campañas.',
+          'Dos cortes programados de optimización: leer resultados, decidir qué mantener y qué ajustar con base en información real.',
+          'Una sesión adicional de capacitación para impulsar lo orgánico: temas, mensajes, llamadas a la acción y conexión con los anuncios.',
+          'Revisar qué contactos llegan y qué información debe devolver ventas para mejorar los esfuerzos.',
+          'Sábado 28 de noviembre: cerrar lo aprendido y entregar como valor adicional una guía de cómo comenzar diciembre.',
+          'Lunes 30 de noviembre: última sesión para terminar de construir con Víctor la agenda y prioridades de diciembre.'
+        ],
+        deliverables:[
+          'Dos campañas iniciales: una en Meta y una en Google Ads, sujetas a accesos, presupuesto y materiales aprobados.',
+          'Bitácora sencilla con resultados, aprendizajes y ajustes durante el mes.',
+          'Guía práctica para Víctor sobre revisión de campañas y una sesión específica para mejorar la difusión orgánica.',
+          'Valor adicional: guía para iniciar diciembre y agenda de prioridades terminada el lunes 30 de noviembre.'
+        ],
+        duration:'Noviembre completo: aprender → lanzar → optimizar → preparar diciembre',
+        calendar:[
+          {date:'02–06 NOV · LUNES A VIERNES',title:'Semana 1 · Desde lo básico',time:'8:30–9:00 a. m.',note:'Cómo funcionan campañas en Meta y Google Ads, objetivos, públicos, presupuesto, mensajes y orden de trabajo.'},
+          {date:'09–13 NOV · LUNES A VIERNES',title:'Semana 2 · Configurar y activar',time:'8:30–9:00 a. m. + implementación acordada',note:'Preparamos y lanzamos una campaña por plataforma si SIMAC entrega accesos, ofertas y presupuesto.'},
+          {date:'16–20 NOV · LUNES A VIERNES',title:'Semana 3 · Aprender con datos reales',time:'8:30–9:00 a. m.',note:'Interpretar respuestas, costos y calidad de contactos; revisar primeras oportunidades de ajuste.'},
+          {date:'23–27 NOV · LUNES A VIERNES',title:'Semana 4 · Mejorar y conectar',time:'8:30–9:00 a. m.',note:'Segundo corte de ajustes, revisión comercial y preparación de continuidad.'},
+          {date:'26 NOV · JUEVES',title:'Sesión adicional · Impulso orgánico',time:'8:30–9:30 a. m. · 60 minutos',note:'Cómo organizar publicaciones, elegir temas y aprovechar el contenido orgánico para reforzar las campañas.'},
+          {date:'28 NOV · SÁBADO',title:'Cierre del aprendizaje + valor adicional',time:'2:00–3:00 p. m. · 60 minutos',note:'Dudas, aprendizajes, resultados conocidos y entrega de la guía para comenzar diciembre.',followup:true},
+          {date:'30 NOV · LUNES',title:'Última sesión · Agenda de diciembre',time:'8:30–9:00 a. m.',note:'Terminamos de definir tareas, prioridades y revisiones que Víctor podrá continuar en diciembre.',followup:true}
+        ],
+        dailyTitle:'Víctor avanza de aprendiz a responsable del seguimiento',
+        daily:'Cada mañana comenzamos con un concepto y lo aplicamos en las cuentas: primero entendemos cómo se hace, luego activamos, revisamos resultados y practicamos ajustes. Fuera de la sesión diaria, yo realizo la implementación técnica comprometida. Al final, Víctor contará con una rutina para revisar Meta, Google Ads y las publicaciones orgánicas.',
+        carel:'Capacito a Víctor, preparo y activo las dos campañas, realizo dos cortes programados de ajustes, imparto la sesión de orgánico y ayudo a cerrar la agenda de diciembre.',
+        simac:'Víctor practica y registra avances. SIMAC entrega ofertas y materiales, aprueba presupuesto en cada plataforma y da seguimiento a los contactos desde comercial.',
+        limits:'Del 2 al 30 de noviembre: una línea comercial, una campaña inicial en Meta y otra en Google Ads; dos cortes de optimización acordados, una capacitación orgánica y sesiones de cierre del 28 y 30 de noviembre.',
+        exclusions:'No incluye atender prospectos, cerrar ventas, manejar todas las campañas de SIMAC, producir diseños/videos, operar permanentemente ni intervenir Odoo.',
+        priceNote:'Pago único por noviembre completo, las dos campañas y la capacitación con Víctor. El presupuesto de anuncios se cubre por separado.'
+      },
+      integral:{
+        num:'03',label:'Acompañamiento integral',price:12000,
+        sub:'Dirección y operación inicial para rentas y pólizas, campañas en Meta y Google Ads y contenido orgánico conectado. Después, supervisión de Víctor.',
+        goal:'Impulsar las dos líneas comerciales principales del diagnóstico —rentas y pólizas/servicios— con una estrategia de noviembre que conecte anuncios, contenido y seguimiento.',
+        outcome:'Plan de noviembre ejecutado, campañas en ambas plataformas con optimización, Víctor más autónomo y decisiones concretas para mejorar el seguimiento comercial.',
+        includes:[
+          'Desde la primera semana construimos un plan para noviembre con objetivos, oferta, mensajes y prioridades diferenciadas para RENTAS y PÓLIZAS/SERVICIOS.',
+          'Cuatro semanas de capacitación y trabajo con Víctor, de lunes a viernes de 8:30 a 9:00 a. m., desde fundamentos hasta optimización.',
+          'Semanas 1 y 2: dirijo y opero la puesta en marcha de anuncios en Meta y Google Ads para las dos líneas; máximo cuatro campañas iniciales (una por línea y plataforma), sujetas a viabilidad y materiales.',
+          'Semanas 3 y 4: dirijo, superviso y enseño a Víctor a revisar campañas, proponer cambios y mantener el ritmo de trabajo.',
+          'Optimizamos en cortes programados: revisar costos y respuestas, identificar anuncios que pierden fuerza por repetición (fatiga), comparar mensajes y decidir qué renovar o detener.',
+          'Conectamos lo orgánico con la publicidad: temas, mensajes, llamadas a la acción y una agenda de hasta seis contenidos prioritarios que SIMAC pueda producir y publicar.',
+          'Cuatro revisiones semanales de resultados: no solo clics, también qué interesados llegan y qué ocurre después con comercial.',
+          'Revisión práctica de UN recorrido en Odoo: ingreso, asignación, seguimiento y resultado de los contactos; proponemos hasta tres mejoras concretas y un acuerdo sencillo entre marketing y ventas.',
+          'Valor adicional: identificar UNA oportunidad de automatización o IA y explicar cómo podría probarse, sin contratar todavía un desarrollo.',
+          'Lunes 30 de noviembre: sesión final con resultados disponibles, aprendizajes, pendientes y agenda de diciembre para que SIMAC continúe.'
+        ],
+        deliverables:[
+          'Plan de marketing de noviembre para rentas y pólizas/servicios, con acciones pagadas y orgánicas coordinadas.',
+          'Hasta cuatro campañas iniciales entre Meta y Google Ads, sujetas a aprobaciones, cuentas, ofertas y materiales.',
+          'Cuatro cortes de resultados y registro de optimizaciones, incluida detección de fatiga publicitaria cuando existan datos suficientes.',
+          'Agenda de hasta seis contenidos prioritarios y orientación para que Víctor coordine su publicación con SIMAC.',
+          'Mapa de un flujo revisado en Odoo y hasta tres acciones de mejora priorizadas.',
+          'Propuesta concreta de una automatización o uso de IA para evaluar posteriormente (sin desarrollo técnico).',
+          'Cierre el lunes 30: resultados disponibles, aprendizajes, nivel de autonomía de Víctor y agenda de diciembre.'
+        ],
+        duration:'Noviembre completo: estrategia → operar → optimizar → supervisar → cerrar',
+        calendar:[
+          {date:'02–06 NOV · LUNES A VIERNES',title:'Semana 1 · Estrategia y dirección',time:'8:30–9:00 a. m. + trabajo operativo acordado',note:'Plan de noviembre para rentas y pólizas; mensajes, medios, agenda orgánica y campañas iniciales.'},
+          {date:'09–13 NOV · LUNES A VIERNES',title:'Semana 2 · Dirijo y opero campañas',time:'8:30–9:00 a. m. + trabajo operativo acordado',note:'Activación en Meta y Google Ads cuando existan aprobaciones; primeros datos y capacitación práctica.'},
+          {date:'16–20 NOV · LUNES A VIERNES',title:'Semana 3 · Optimización y supervisión',time:'8:30–9:00 a. m. + revisión semanal',note:'Evaluamos costos, respuestas y posibles anuncios fatigados; Víctor toma tareas bajo supervisión.'},
+          {date:'23–27 NOV · LUNES A VIERNES',title:'Semana 4 · Contenido y conexión con ventas',time:'8:30–9:00 a. m. + revisión semanal',note:'Ajustes, contenidos prioritarios, un flujo de Odoo y oportunidad de automatización o IA.'},
+          {date:'26 NOV · JUEVES',title:'Sesión adicional · Orgánico + campañas',time:'8:30–9:30 a. m. · 60 minutos',note:'Revisamos cómo aprovechar publicaciones, mensajes y recursos existentes para reforzar los anuncios.'},
+          {date:'30 NOV · LUNES',title:'Última sesión · Resultados y diciembre',time:'8:30–9:30 a. m. · 60 minutos',note:'Presentamos resultados disponibles, decisiones, pendientes y la agenda para diciembre.',followup:true}
+        ],
+        dailyTitle:'Primero opero y dirijo; después Víctor ejecuta con mi supervisión',
+        daily:'Durante las dos primeras semanas defino prioridades, campañas y contenido con base en las dos líneas del negocio y opero los lanzamientos. En las siguientes, Víctor revisa resultados de Meta y Google Ads, coordina contenido orgánico y registra respuestas comerciales; yo superviso, detecto oportunidades de ajuste y doy dirección. El cierre del 30 de noviembre deja una agenda de continuidad para diciembre.',
+        carel:'Diseño el plan de noviembre, dirijo y opero el arranque de las campañas, capacito a Víctor, superviso optimizaciones, alineo publicidad con orgánico, reviso un flujo de Odoo y documento una oportunidad de automatización o IA.',
+        simac:'Víctor participa y asume gradualmente el seguimiento; SIMAC entrega materiales, ofertas, presupuesto y accesos de ambas plataformas, produce/publica contenido y garantiza seguimiento comercial. Facilita acceso supervisado a un flujo de Odoo.',
+        limits:'Del 2 al 30 de noviembre: dos líneas (rentas y pólizas/servicios), Meta y Google Ads, hasta cuatro campañas iniciales, dos rondas de ajustes programadas por plataforma, orientación de hasta seis contenidos, revisión de un flujo en Odoo y una oportunidad de automatización/IA documentada.',
+        exclusions:'No incluye producir diseños o videos, administrar publicaciones diariamente, operar campañas sin límite, rediseñar todo el proceso comercial, ejecutar cambios en Odoo, desarrollar integraciones/agentes de IA ni asumir el departamento de forma permanente.',
+        priceNote:'Pago único por la estrategia y acompañamiento operativo de noviembre para las dos líneas prioritarias. El presupuesto de Meta y Google Ads va aparte.'
+      }
     };
     const $=id=>document.getElementById(id);
-    const mode=$('mode'),duration=$('duration'),skills=$('skills'),readiness=$('readiness');
+    let selected='integral';
     const fmt=n=>new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:0}).format(n);
-    function choose(id){mode.value=id;update();$('simulador').scrollIntoView({behavior:'smooth',block:'start'});}
+    const makeList=(id,arr)=>$(id).replaceChildren(...arr.map(t=>{const li=document.createElement('li');li.textContent=t;return li;}));
+    function choose(id){selected=id;update();$('simulador').scrollIntoView({behavior:'smooth',block:'start'});}
     function update(){
-      const key=mode.value,p=data[key],weeks=duration.value,quoted=(key==='integral'||weeks==='2');
-      duration.disabled=key==='integral';
-      $('sim-title').textContent=p.label;$('sim-subtitle').textContent=p.sub;$('sim-badge').textContent='Modalidad '+({capacitacion:'01',implementacion:'02',integral:'03'}[key]);
-      $('sim-price').textContent=quoted?fmt(p.price):'Por definir';
-      $('sim-period').textContent=key==='integral'?'2–27 de noviembre + seguimiento 5 de diciembre':weeks==='2'?'2–14 de noviembre + seguimiento 5 de diciembre':weeks==='3'?'2–21 de noviembre + refuerzo en diciembre':'2–28 de noviembre + refuerzo en diciembre';
-      $('sim-outcome').textContent=p.outcome;$('sim-description').textContent=quoted?'Actividades incluidas en el alcance base.':'Esta duración amplía las sesiones. El precio mostrado para dos semanas ya no aplica y debe acordarse antes de iniciar.';
-      $('sim-list').replaceChildren(...p.list.map(t=>{const li=document.createElement('li');li.textContent=t;return li;}));
-      $('sim-carel').textContent=p.carel;$('sim-simac').textContent=p.simac;$('sim-limits').textContent=p.limits;
-      let message='',ok=false;
-      if(key==='capacitacion'){message='La capacitación puede realizarse aunque todavía no existan condiciones para lanzar campañas. Los ejercicios se adaptan al nivel actual.';ok=true;}
-      else if(readiness.value==='pendiente'){message='El lanzamiento queda condicionado a confirmar oferta, accesos, presupuesto y capacidad de atención comercial. No se promete activar antes de tenerlos.';}
-      else if(skills.value==='basica'){message='Con condiciones comerciales listas, Carel tendría que dedicar más trabajo técnico inicial. Se debe confirmar que alcance dentro de esta propuesta.';}
-      else if(skills.value==='operativa'){message='Con condiciones listas y capacidad interna, puede avanzarse a ejecutar con participación creciente de la persona de SIMAC.';ok=true;}
-      else{message='Bajo el supuesto de que todo está aprobado, el piloto es potencialmente viable; falta evaluar cuánto apoyo técnico necesita la persona interna.';}
-      const sc=$('scenario');sc.textContent=message;sc.classList.toggle('ok',ok);
-      document.querySelectorAll('.price-card').forEach(c=>{const active=c.dataset.plan===key;c.classList.toggle('active',active);c.setAttribute('aria-pressed',String(active));});
+      const p=data[selected],isIntegral=selected==='integral',ready=$('readiness').value==='listas';
+      const focusSelect=$('focus');focusSelect.querySelector('option[value="equipos"]').disabled=isIntegral;
+      if(isIntegral&&focusSelect.value==='equipos')focusSelect.value='rentas';
+      $('focus-label').textContent=isIntegral?'¿Con cuál línea iniciar? (ambas incluidas)':'Línea comercial prioritaria';
+      const focus=focusSelect.value;
+      const focusName={rentas:'rentas de equipos',polizas:'pólizas y servicios',equipos:'venta de equipos'}[focus];
+      $('sim-title').textContent=p.label;$('sim-subtitle').textContent=p.sub;$('sim-badge').textContent='MODALIDAD '+p.num+(selected==='integral'?' · MAYOR ACOMPAÑAMIENTO':'');$('sim-num').textContent=p.num;
+      $('mode-top').classList.toggle('premium',selected==='integral');$('sim-value').classList.toggle('premium',selected==='integral');
+      $('sim-goal').textContent=p.goal;$('sim-outcome').textContent=p.outcome;
+      $('sim-duration').textContent=p.duration;$('sim-daily-title').textContent=p.dailyTitle;$('sim-daily').textContent=p.daily;
+      makeList('sim-includes',p.includes);makeList('sim-deliverables',p.deliverables);
+      $('sim-carel').textContent=p.carel;$('sim-simac').textContent=p.simac;$('sim-limits').textContent=p.limits;$('sim-exclusions').textContent=p.exclusions;
+      $('sim-price').replaceChildren(document.createTextNode(fmt(p.price)),Object.assign(document.createElement('span'),{textContent:'MXN'}));$('sim-price').classList.toggle('money-premium',selected==='integral');$('sim-price-note').textContent=p.priceNote;
+      const cal=$('sim-calendar');cal.replaceChildren(...p.calendar.map(item=>{const box=document.createElement('div');box.className='calendar-entry'+(item.followup?' followup':'');const date=document.createElement('span');date.className='date';date.textContent=item.date;const title=document.createElement('strong');title.textContent=item.title;const time=document.createElement('span');time.className='time';time.textContent=item.time;const note=document.createElement('p');note.textContent=item.note;box.append(date,title,time,note);return box;}));
+      const sc=$('scenario');const prep=isIntegral?'Simulación para rentas y pólizas/servicios, comenzando por '+focusName+': ':'Simulación para '+focusName+': ';
+      if(selected==='capacitacion'){sc.textContent=prep+'se puede aprender y preparar ejercicios aunque los anuncios aún no estén listos para publicarse. No se operan campañas en esta opción.';sc.classList.remove('warning');}
+      else if(!ready){sc.textContent=prep+'antes de activar, SIMAC debe confirmar oferta, acceso a la cuenta, material, presupuesto y quién atenderá los contactos. La fecha de publicación depende de esas condiciones.';sc.classList.add('warning');}
+      else{sc.textContent=prep+'con oferta, accesos, materiales, presupuesto y atención comercial aprobados, se puede iniciar el lanzamiento dentro del alcance de esta modalidad. Los resultados reales se conocerán al operar.';sc.classList.remove('warning');}
+      const examples={
+        rentas:'Ejemplo ilustrativo: un anuncio para que empresas interesadas en rentar montacargas soliciten información. Revisaríamos cuántos contactos llegan, qué equipo y plazo buscan y qué sucede después con ellos.',
+        polizas:'Ejemplo ilustrativo: una campaña para que empresas pregunten por mantenimiento y pólizas de servicio. Observaríamos consultas recibidas y si llegan a una cotización o seguimiento comercial.',
+        equipos:'Ejemplo ilustrativo: promocionar un equipo disponible con invitación a solicitar cotización. Mediríamos consultas reales y su avance comercial, además de los clics al anuncio.'
+      };
+      $('sim-example').textContent=isIntegral?'Ejemplo ilustrativo: trabajamos dos necesidades en paralelo. Para rentas, atraer empresas que buscan montacargas; para pólizas, empresas que necesitan mantenimiento o servicio. Comenzamos por '+focusName+' y conectamos los contactos de ambas líneas con un recorrido revisado en Odoo, si SIMAC autoriza los accesos.':(selected==='capacitacion'?'Se trabajaría como ejercicio, sin activar publicidad. ':'Se usaría como punto de partida para las campañas en Meta y Google Ads, sujeto a validación de materiales y oferta. ')+examples[focus];
+      document.querySelectorAll('.plan-tile').forEach(c=>c.setAttribute('aria-pressed',String(c.dataset.plan===selected)));
     }
-    function summary(){const p=data[mode.value],quoted=(mode.value==='integral'||duration.value==='2');const val=quoted?fmt(p.price):'Precio por acordar';return ['SIMAC · Propuesta de acompañamiento de marketing','Modalidad: '+p.label,'Inversión única: '+val,'Periodo: '+$('sim-period').textContent,'Resultado: '+p.outcome,'ACTIVIDADES:',...p.list.map(t=>'• '+t),'CAREl: '+p.carel,'SIMAC: '+p.simac,'LÍMITES: '+p.limits,'Condiciones para ejecutar: '+$('scenario').textContent,'El presupuesto publicitario se paga por separado. Diagnóstico ejecutivo incluido como referencia.'].join('\n');}
-    for(const id of ['mode','duration','skills','readiness'])$(id).addEventListener('change',update);
-    document.querySelectorAll('.price-card').forEach(card=>{card.addEventListener('click',()=>choose(card.dataset.plan));card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();choose(card.dataset.plan);}});});
+    function summary(){const p=data[selected];return ['SIMAC · Propuesta de acompañamiento de marketing','Modalidad: '+p.label,'OBJETIVO: '+p.goal,'RESULTADO ESPERADO: '+p.outcome,'ACTIVIDADES:',...p.includes.map(t=>'• '+t),'ENTREGABLES:',...p.deliverables.map(t=>'• '+t),'CALENDARIO:',...p.calendar.map(c=>'• '+c.date+' · '+c.time+' · '+c.title+': '+c.note),'AGENDA INTERNA: '+p.daily,'CAREL: '+p.carel,'SIMAC: '+p.simac,'LÍMITES: '+p.limits,'NO INCLUIDO: '+p.exclusions,'SIMULACIÓN: '+$('scenario').textContent,'EJEMPLO: '+$('sim-example').textContent,'INVERSIÓN ÚNICA: '+fmt(p.price),p.priceNote,'El diagnóstico ejecutivo se entrega como valor adicional.'].join('\n');}
+    for(const id of ['focus','readiness'])$(id).addEventListener('change',update);
+    document.querySelectorAll('.plan-tile').forEach(card=>card.addEventListener('click',()=>choose(card.dataset.plan)));
     $('copy').addEventListener('click',async()=>{const s=summary();try{await navigator.clipboard.writeText(s);$('live').textContent='Resumen copiado.';}catch(e){const ta=document.createElement('textarea');ta.value=s;document.body.appendChild(ta);ta.select();const ok=document.execCommand('copy');ta.remove();$('live').textContent=ok?'Resumen copiado.':'Usa Descargar resumen para guardarlo.';}});
     $('download').addEventListener('click',()=>{const blob=new Blob([summary()],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='SIMAC_Resumen_Modalidad.txt';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);$('live').textContent='Resumen descargado.';});
     update();
